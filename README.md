@@ -16,3 +16,6 @@ Visuals: here are some examples of outputs of the code I made.
 
 2: My approximated solution for the heat equation in one spatial dimension (using the method of lines)
 ![Image](https://github.com/user-attachments/assets/f7d3a4c6-dc12-4e42-a019-4d8294c52973)
+
+3: My stability plot of my 4th order Runge-Kutta method, with the stable area shaded green (see my PDFs for the derrivation of this)
+![Image](https://github.com/user-attachments/assets/8d2db7bc-c492-49c3-8d66-c8caa85ebca1)
