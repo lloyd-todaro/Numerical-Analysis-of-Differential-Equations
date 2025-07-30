@@ -19,3 +19,6 @@ Visuals: here are some examples of outputs of the code I made.
 
 3: My stability plot of my 4th order Runge-Kutta method, with the stable area shaded green (see my PDFs for the derrivation of this)
 ![Image](https://github.com/user-attachments/assets/8d2db7bc-c492-49c3-8d66-c8caa85ebca1)
+
+4: My 4th order Runge-Kutta approximation for y'(t)=cos(t^2), with initial condition y(0)=0
+![Image](https://github.com/user-attachments/assets/654c1189-296c-448d-80a9-a72d3cd73a34)
