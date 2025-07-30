@@ -25,3 +25,7 @@ Visuals: here are some examples of outputs of the code I made.
 
 5: My 3rd order Backward Differentiation approximation for y'(t)=-50y(t) with initial condition y(0)=1
 ![Image](https://github.com/user-attachments/assets/b1b09f74-a884-49c4-8c1c-b640c7c4fc92)
+
+My LaTeX work: here is some proofs and derrivations I did to support and analyze my programs.
+
+[BDF2](BDF2_derrivation.pdf)
