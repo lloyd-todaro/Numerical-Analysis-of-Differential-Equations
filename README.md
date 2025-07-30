@@ -22,3 +22,6 @@ Visuals: here are some examples of outputs of the code I made.
 
 4: My 4th order Runge-Kutta approximation for y'(t)=cos(t^2), with initial condition y(0)=0
 ![Image](https://github.com/user-attachments/assets/654c1189-296c-448d-80a9-a72d3cd73a34)
+
+5: My 3rd order Backward Differentiation approximation for y'(t)=-50y(t) with initial condition y(0)=1
+![Image](https://github.com/user-attachments/assets/b1b09f74-a884-49c4-8c1c-b640c7c4fc92)
