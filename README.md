@@ -15,4 +15,4 @@ Visuals: here are some examples of outputs of the code I made.
 ![Image](https://github.com/user-attachments/assets/61efddc3-65e1-4bca-9ddb-18ce40f76e35)
 
 2: My approximated solution for the heat equation in one spatial dimension (using the method of lines)
-
+![Image](https://github.com/user-attachments/assets/f7d3a4c6-dc12-4e42-a019-4d8294c52973)
