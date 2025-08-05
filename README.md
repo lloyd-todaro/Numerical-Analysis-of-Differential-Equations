@@ -28,4 +28,4 @@ Visuals: here are some examples of outputs of the code I made.
 
 My LaTeX work: here is some proofs and derrivations I did to support and analyze my programs.
 
-[BDF2](BDF2_derrivation.pdf)
+[Forward_Euler_Error_Bound.pdf](https://github.com/user-attachments/files/21604741/Forward_Euler_Error_Bound.pdf)
