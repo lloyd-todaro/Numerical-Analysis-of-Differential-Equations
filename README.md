@@ -11,7 +11,7 @@ How to use: In order to use the numerical methods, you need to input a function 
 
 Visuals: here are some examples of outputs of the code I made.
 
-1: An approximate solution of the equation y'(t)=-10y(t) with initial condition y(0)=1
+1: An approximate solution of the equation y'(t)=-10y(t) with initial condition y(0)=1 using my Backwards Euler method.
 ![Image](https://github.com/user-attachments/assets/61efddc3-65e1-4bca-9ddb-18ce40f76e35)
 
 2: My approximated solution for the heat equation in one spatial dimension (using the method of lines)
@@ -28,4 +28,5 @@ Visuals: here are some examples of outputs of the code I made.
 
 My LaTeX work: here is some proofs and derrivations I did to support and analyze my programs.
 
+Here's a brief explainantion of a theorem used to bound the error for the forward Euler method, along with a proof of said theorem.
 [Forward_Euler_Error_Bound.pdf](https://github.com/user-attachments/files/21604741/Forward_Euler_Error_Bound.pdf)
