@@ -32,3 +32,4 @@ Here's a brief explainantion of a theorem used to bound the error for the forwar
 [Forward_Euler_Error_Bound.pdf](https://github.com/user-attachments/files/21604741/Forward_Euler_Error_Bound.pdf)
 
 Derrivations for an Adams-Bashforth method:
+[3rd_order_Adams-Bashforth](https://github.com/user-attachments/files/21670078/AB3_derrivation.pdf)
