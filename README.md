@@ -30,3 +30,5 @@ My LaTeX work: here is some proofs and derrivations I did to support and analyze
 
 Here's a brief explainantion of a theorem used to bound the error for the forward Euler method, along with a proof of said theorem.
 [Forward_Euler_Error_Bound.pdf](https://github.com/user-attachments/files/21604741/Forward_Euler_Error_Bound.pdf)
+
+Derrivations for an Adams-Bashforth method:
