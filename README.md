@@ -33,3 +33,6 @@ Here's a brief explainantion of a theorem used to bound the error for the forwar
 
 Derrivations for an Adams-Bashforth method:
 [3rd_order_Adams-Bashforth](https://github.com/user-attachments/files/21670078/AB3_derrivation.pdf)
+
+Derrivation for a Backward Differentiation Formula (2nd order):
+[BDF2.pdf](https://github.com/user-attachments/files/21671041/BDF2.pdf)
