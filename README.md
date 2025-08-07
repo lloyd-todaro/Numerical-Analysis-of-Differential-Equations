@@ -11,7 +11,7 @@ How to use: In order to use the numerical methods, you need to input a function 
 
 Visuals: here are some examples of outputs of the code I made.
 
-1: An approximate solution of the equation y'(t)=-10y(t) with initial condition y(0)=1 using my Backwards Euler method.
+1: An approximate solution of the equation y'(t)=-10y(t) with initial condition y(-4)=1 using my Backwards Euler method.
 ![Image](https://github.com/user-attachments/assets/61efddc3-65e1-4bca-9ddb-18ce40f76e35)
 
 2: My approximated solution for the heat equation in one spatial dimension (using the method of lines)
