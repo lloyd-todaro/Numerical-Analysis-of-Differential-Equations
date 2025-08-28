@@ -40,4 +40,7 @@ Derrivation for a Backward Differentiation Formula (2nd order):
 Derrivation of the stability region for the second order Runge-Kutta method:
 [RK2_stability.pdf](https://github.com/user-attachments/files/22033160/RK2_stability.pdf)
 
+Derrivation of the stability region for the fourth order Runge-Kutta method:
+[RK4_stability.pdf](https://github.com/user-attachments/files/22033188/RK4_stability.pdf)
+
 
