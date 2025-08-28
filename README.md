@@ -37,4 +37,7 @@ Derrivations for an Adams-Bashforth method:
 Derrivation for a Backward Differentiation Formula (2nd order):
 [BDF2.pdf](https://github.com/user-attachments/files/21671041/BDF2.pdf)
 
+Derrivation of the stability region for the second order Runge-Kutta method:
+[RK2_stability.pdf](https://github.com/user-attachments/files/22033160/RK2_stability.pdf)
+
 
