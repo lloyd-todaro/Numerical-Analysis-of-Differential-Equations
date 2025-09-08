@@ -1,0 +1,58 @@
+%example with a stiff ODE
+f=@(t,y) -10*y
+df=@(t,y) -10
+t0=-4
+y0=1
+T=1
+N=100
+delta=1e-6;
+function [t,y] =backwardeuler(t0,T,y0,N,f,df, delta)
+%We take in all necesary variables
+%f-ODE in the form of y'(t)=f(t,y(t))
+%t0-The t-value at our initial point
+%T-final time
+%y0-initial value
+%N-number of of steps 
+%This will output y (a vector of y values making up the estimated solution)
+%and t (a vector of time values, each assigned to the y values)
+%df is the partial derrivative of f(t,y(t)) with respect to y
+%delta is a predecided parameter for the accuracy of your root finding
+%method
+h=(T-t0)/N %h reprisents the t-length of one timestep
+t=linspace(t0,T,N)
+y=zeros(size(t)) %initialize solutions and initial value for the IVP
+y(1)=y0
+    for i=1:(N-1)
+    tn=t(i)
+    yn=y(i)
+    tn_1=tn+h
+    y_guess=yn %for our root finding we will use yn as our initial guess 
+    %and use the Euler-Raphson method of root finding to estimate yn+1
+    %dF/dy needs to be calculated analytically to use this method
+    iter=0 %create an iteration for the root finding method
+    while iter<N
+    F=y_guess-yn-h*f(tn_1, y_guess)
+    dF_y=1-h*df(tn_1, y_guess)
+    y_new=y_guess-F/dF_y
+    if abs(y_guess-y_new)<delta
+        break
+    end
+    y_guess=y_new
+    iter=iter+1
+    end
+    y(i+1)=y_new %update the solution
+    end
+end
+
+
+    
+
+
+[t,y]=backwardeuler(t0,T,y0,N,f,df, delta)
+plot(t,y)
+xlabel('t')
+ylabel('y(t)')
+title('Approximate solution using Backward Euler Method')
+grid on
+xline(0,'b--','LineWidth',1)
+yline(0,'b--','LineWidth',1)
