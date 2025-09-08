@@ -1,0 +1,64 @@
+
+
+
+function [t,y]=Backwards_Differentiation_3(t0,y0,T,N,f,df,delta)
+%We take in all necesary variables
+%f-ODE in the form of y'(t)=f(t,y(t))
+%t0-The t-value at our initial point
+%T-final time
+%y0-initial value
+%N-number of of steps 
+%This will output y (a vector of y values making up the estimated solution)
+%and t (a vector of time values, each assigned to the y values)
+%df is the partial derrivative of f(t,y(t)) with respect to y
+%delta is a predecided parameter for the accuracy of your root finding
+%method
+h=(T-t0)/N; %h reprisents the t-length of one timestep
+t=linspace(t0,T,N)
+y=zeros(size(t)) %initialize solutions and initial value for the IVP
+y(1)=y0
+y(2)=y0+h*f(t(2),y(1))/(1+500*h) %To compute the first 2 steps, 
+%we don't have enough information to use a 3-step method yet, so we
+%estimate that information using a crude fixed point implicit method. We
+%use second order because it's truncation order is of order 3 and we only
+%use it for 2 steps.
+y(3)=y(2)+h*f(t(3),y(2))/(1+500*h)
+for i=3:(N-1)
+    tn=t(i)
+    yn=y(i)
+    yn_1=y(i-1)
+    yn_2=y(i-2)
+    tn_1=tn+h
+     y_guess=yn %for our root finding we will use yn as our initial guess 
+    %and use the Euler-Raphson method of root finding to estimate yn+1
+    %dF/dy needs to be calculated analytically to use this method
+    iter=0 %create an iteration for the root finding method
+    while iter<N
+        F=y_guess-18/11*yn+9/11*yn_1-2/11*yn_2-6/11*h*f(tn_1,y_guess)
+        dF_y=1-6/11*h*df(tn_1,y_guess)
+        y_new=y_guess-F/dF_y
+        if abs(y_new-y_guess)<delta
+        end
+        y_guess=y_new
+        iter=iter+1
+    end
+    y(i+1)=y_new
+end
+end
+
+%example with a stiff ODE
+f=@(t,y) -50*y
+df=@(t,y) -50
+t0=0
+y0=1
+T=1
+N=100
+delta=1e-6
+[y,t]=Backwards_Differentiation_3(t0,y0,T,N,f,df, delta)
+plot(t,y)
+xlabel('t')
+ylabel('y(t)')
+title('Approximate solution using the Third-Order Backward Differentiation Method')
+grid on
+xline(0,'b--','LineWidth',1)
+yline(0,'b--','LineWidth',1)
