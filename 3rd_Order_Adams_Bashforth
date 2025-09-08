@@ -1,0 +1,40 @@
+%The 3-step Adams Bashforth Method
+function [t,y]=Adams_Bashforth_3(y0,t0,T,N,f)
+%We take in all necesary variables
+%f-ODE in the form of y'(t)=f(t,y(t))
+%t0-The t-value at our initial point
+%T-final time
+%y0-initial value
+%N-number of of steps 
+%This will output y (a vector of y values making up the estimated solution)
+%and t (a vector of time values, each assigned to the y values)
+h=(T-t0)/N
+t=linspace(t0,T,N)
+y=zeros(size(t))
+y(1)=y0
+y(2)=y0+h*f(t(1)+h/2,y(1)+h/2*f(t(1),y(1))) %To compute the first 2 steps, 
+%we don't have enough information to use a 3-step method yet, so we
+%estimate that information using the second order Runge Kutta method. We
+%use second order because it's truncation order is of order 3 and we only
+%use it for 2 steps.
+y(3)=y(2)+h*f(t(2)+h/2,y(2)+h/2*f(t(2),y(2)))
+for i=3:(N-1)
+    y(i+1)=y(i)+h*(23/12*f(t(i),y(i))-16/12*f(t(i-1),y(i-1)+5/12*f(t(i-2),y(i-2))))
+end
+%This method uses information from 3 total steps, and gives us third order
+%convergence
+end
+%Example with an ODE
+f=@(t,y) sin(t.^3)
+N=1000
+t0=-2
+T=2
+y0=0
+[t,y]=Adams_Bashforth_3(y0,t0,T,N,f)
+plot(t,y)
+xlabel('t')
+ylabel('y(t)')
+title('Approximate solution using the Adams-Bashforth 3-step Method')
+grid on
+xline(0,'b--','LineWidth',1)
+yline(0,'b--','LineWidth',1)
