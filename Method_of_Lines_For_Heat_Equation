@@ -1,0 +1,99 @@
+%Consider the heat equation, accounting for heat dissipating into the
+%surroundings slowly, this is written as dT/dt=a(d^2T/dx^2)-B(T-T_a). I
+%will use the method of lines to turn this into a system of ODE's and
+%numerically solve said system using a Runge Kutta method which I
+%programmed. (Bear in mind I am considering this to be on a 'rod' which has
+%only one spatial dimension)
+
+N=20%number of spatial grid points
+%constants
+a=0.025
+B=0.1
+%Initial temp
+T(1,1)=100
+
+%The number of equations in our solution, N, should be one more than y (to
+%account for the starting point because y is the solution vector from
+% T_2 to T_N)
+
+h=1/N %Consider the rod to be one meter long
+
+%parameters
+T_a=25
+T0=100*ones(N-1,1)
+t0=0
+T_RK=20
+RKN=500 %our N for the Runge Kutta Method
+
+N_points=15 %How many points on the rod do we plot the temp over time
+
+
+%I will use RK4 method, you could use any of the numerical methods I made,
+%or use a built in one
+function [t,y] =Runge_Kutta_4(t0,y0,T,f,N)
+%We take in all necesary variables
+%f-ODE in the form of y'(t)=f(t,y(t))
+%t0-The t-value at our initial point
+%T-final time
+%y0-initial value
+%N-number of of steps 
+%This will output y (a vector of y values making up the estimated solution)
+%and t (a vector of time values, each assigned to the y values)
+h=(T-t0)/N
+t=linspace(t0,T,N+1)
+y=zeros(size(y0,1),N+1)
+y(:,1)=y0
+for i=1:(N)
+    z1=f(t(i),y(:,i))%The only difference From Euler's Method 
+    % is we take additional partial steps, giving us 4th order convergence
+    z2=f(t(i)+h/2,y(:,i)+h/2*z1)
+    z3=f(t(i)+h/2,y(:,i)+h/2*z2)
+    z4=f(t(i),y(:,i)+h*z3)
+    y(:,i+1)=y(:,i)+h/6*(z1+2*z2+2*z3+z4)
+end
+end
+
+function dTdt=Rodcond(t,y,N,h,T_a,a,B)
+        
+        %temp vector including bounds
+        Tspan=[100;y;T_a] %T0 at x=0, Ta at x=1
+        dTdt=zeros(N-1,1) %initialize column vector for dT/dt
+        for i = 1:N-1
+        dTdt(i) = (a / h^2) * (Tspan(i+2) - 2*Tspan(i+1) + Tspan(i)) ...
+                  - B * (Tspan(i+1) - T_a);
+        end
+end
+
+
+
+
+
+%solve with RK4
+[tsol,Tsol]=Runge_Kutta_4(t0,T0,T_RK,@(t,y)Rodcond(t,y,N,h,T_a,a,B),RKN)
+
+
+
+
+
+
+%plot temp at midpoint over time
+%mid=round((N-1)/2)
+%figure
+%plot(tsol,Tsol(mid,:),'LineWidth',2)
+%xlabel('Time(s)')
+%ylabel('Temp at midpoint (Celcius)')
+%title('Tempurature at midpoint over time')
+%grid on
+
+%Plot tempuratures at various points
+points=round(linspace(1,N-1,N_points)) 
+figure
+plot (tsol,Tsol(points,:),'LineWidth',1)
+set(gca,'colororder',parula(N_points))
+xlabel('Time(s)')
+ylabel('Temp at Various Points (Celcius)')
+lgd=legend( arrayfun(@(x) sprintf('x = %.2f', (x-1)*h), points, 'UniformOutput', false));
+lgd.NumColumns=2
+lgd.Location='bestoutside'
+lgd.FontSize=9
+grid on
