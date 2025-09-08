@@ -1,0 +1,21 @@
+function [e_n]= Error_Bound(L,t0,T,d2y_max,N,e1)
+%Take in all variables needed for the global error bound theorem. L is the
+%Lipschitz constant in y. t0,T are the start and end of the t-interval,
+%respectively. e1 is the original error (in out initial value, this ideally
+%will be zero almost always). N is how many timesteps we took in our
+%method. d2y_max is the infinity norm of the second derrivative of y on the
+%t-interval.
+h=(T-t0)/N
+e_n=exp((T-t0)*L)*e1+((exp((T-t0)*L)-1)/L)*(h/2*d2y_max)
+disp(['Global Error Bound:', num2str(e_n)])
+end
+
+%Example for a simple Euler estimation: 
+N=100
+T=5
+t0=0
+L=1
+d2y_max=1
+e1=0
+
+[e]=Error_Bound(L,t0,T,d2y_max,N,e1)
