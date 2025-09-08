@@ -1,0 +1,31 @@
+%as we see for the stability of Forward Euler, we see that it is stable on
+%the interior of the unit disc centered around Re(hk)=-1,Im(hk)=0. Thus we
+%see that for the method to be convergent, h must be sufficiently small
+%that the real part of |hk| is at most 2, thus the method is not absolutely
+%stable and for extremely large k it is very inneficient. 
+
+%Let's look at Backward Euler:
+%After some algebra we see y_n+1=yn/(1-hk)=y0/((1-hk)^n), which converges
+%when |1-hk|>1. Plotted on the complex plane we see:
+x=linspace(-3,5,500)%Re(hk)
+y=linspace(-3,5,500)%Im(hk)
+[x,y]=meshgrid(x,y)
+Z=x+1i*y %Z is a complex number on the grid x,y
+Stability_region=abs(Z-1)>=1 %algebraically calculated stability region
+%plot the stability
+figure;
+hold on;
+contourf(x,y,Stability_region, [1,1],'FaceColor','green', 'EdgeColor','none','FaceAlpha', 0.3)
+theta=linspace(0,2*pi, 1000)
+circle_x=cos(theta)+1
+circle_y=sin(theta)
+plot(circle_x, circle_y, 'k', 'LineWidth',1.5)
+xline(0, 'b--', 'LineWidth',1.5) %black dashed line for the axis
+yline(0, 'b--', 'LineWidth', 1.5)
+xlabel('Re(hk)')
+ylabel('Im(hk)')
+title('Stability of Backward Euler')
+grid on
+axis equal
+xlim([-2,4])
+ylim([-3,3])
