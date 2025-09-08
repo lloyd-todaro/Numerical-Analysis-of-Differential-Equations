@@ -1,0 +1,28 @@
+%to plot the area of absolute stability for a stiff problem, We assume the
+%ODE is of the form y'(t)=ky(t) for some real-valued k.
+%After using algebra we see Forward Euler's method can be simplified to
+%y_n+1=y0(1+hk)^n, it's easy to see this blows up for |1+hk|>1, and
+%additionally stays stagnant if |1+hk|=1, thus not converging. This yields
+%the area of absolute stability (formally defined as the area of hk where
+%the method always converges for arbitrarily larhe h) to be the area where
+%|1+hk|<1, plotted on the complex plane:
+
+
+theta=linspace(0,2*pi,1000)
+x=cos(theta)-1
+y=sin(theta)
+figure;
+plot(x,y,'k')%recall that the boundery is not included in the domain, so I
+% will plot the curve seperately to display that
+hold on; %don't restart my graph
+xlabel('Re(hk)')
+ylabel('Im(hk)')
+fill(x,y,'green','EdgeColor','none','FaceAlpha',0.3) %FaceAlpha makes the fill 
+% translucent
+xline(0, 'b--', 'LineWidth',1.5) %black dashed line for the axis
+yline(0, 'b--', 'LineWidth', 1.5)
+grid on
+axis on
+title('Stability of Forward Euler')
+xlim([-2.5,0.5]); ylim([-1.5,1.5]) %properly center the graph
+axis equal
