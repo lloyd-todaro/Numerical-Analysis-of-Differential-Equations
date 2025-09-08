@@ -1,0 +1,19 @@
+x=linspace(-10,5,500)%Re(hk)
+y=linspace(-10,5,500)%Im(hk)
+[x,y]=meshgrid(x,y)
+Z=x+1i*y %Z is a complex number on the grid x,y
+Stability_region=abs(1+Z+(1/2)*Z.^2+(1/6)*Z.^3+(1/24)*Z.^4)>=1 %algebraically calculated stability region
+%plot the stability
+figure;
+hold on;
+contourf(x,y,Stability_region, [1,1],'FaceColor','green', 'EdgeColor','none','FaceAlpha', 0.3)
+xline(0, 'b--', 'LineWidth',1.5) %black dashed line for the axis
+yline(0, 'b--', 'LineWidth', 1.5)
+xlabel('Re(hk)')
+ylabel('Im(hk)')
+title('Stability of RK4')
+grid on
+axis on
+axis equal
+xlim([-2,4])
+ylim([-3,3])
